@@ -1,3 +1,13 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const savedEventDateTime = localStorage.getItem('eventDateTime');
+    
+    if (savedEventDateTime) {
+        startCountdown(new Date(savedEventDateTime));
+    } else {
+        document.getElementById('countdown-display').innerHTML = "Click to set event date and time";
+    }
+});
+
 function showDateTimePicker() {
     document.getElementById('date-time-picker').classList.remove('hidden');
 }
@@ -12,6 +22,8 @@ function setCountdown() {
     }
 
     const eventDateTime = new Date(`${eventDate}T${eventTime}`);
+    localStorage.setItem('eventDateTime', eventDateTime);
+
     startCountdown(eventDateTime);
     document.getElementById('date-time-picker').classList.add('hidden');
 }
@@ -26,6 +38,7 @@ function startCountdown(eventDateTime) {
         if (distance < 0) {
             clearInterval(interval);
             countdownDisplay.innerHTML = "Event Started!";
+            localStorage.removeItem('eventDateTime');
             return;
         }
 
