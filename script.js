@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (savedEventDateTime) {
         startCountdown(new Date(savedEventDateTime));
     } else {
-        document.getElementById('countdown-display').innerHTML = "Click to set event date and time";
+        document.getElementById('countdown-display').innerHTML = "Click to set the date and time";
     }
 });
 
